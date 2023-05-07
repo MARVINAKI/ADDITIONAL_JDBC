@@ -1,21 +1,21 @@
-import MyException.DatabaseConnectionErrorException;
-
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import DAO.Impl.EmployeeDAOImpl;
+import model.City;
+import model.Employee;
+import model.enums.Gender;
 
 public class Application {
 	public static void main(String[] args) {
 
-		final String user = "myUser";
-		final String password = "123";
-		final String url = "jdbc:postgresql://localhost:5432/myDB";
+		EmployeeDAOImpl employeeDAO = new EmployeeDAOImpl();
 
-		try (Connection connection = DriverManager.getConnection(url, user, password)) {
-			System.out.println("Successful database connection");
-		} catch (SQLException e) {
-			e.printStackTrace();
-			throw new DatabaseConnectionErrorException();
-		}
+		employeeDAO.addEmployee(new Employee("TEST", "TEST", Gender.MALE, new City("TEST")));
+
+		System.out.println(employeeDAO.findById("fniyGDuFX"));
+
+		System.out.println(employeeDAO.getAllEmployees());
+
+		System.out.println(employeeDAO.updateById("YiGIQLATJ", new Employee("TEST2", "TEST2", Gender.FEMALE, new City("TEST2"))));
+
+		System.out.println(employeeDAO.deleteById("ErsumCdmL"));
 	}
 }
