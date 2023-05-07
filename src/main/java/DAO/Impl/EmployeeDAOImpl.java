@@ -23,6 +23,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 			preparedStatement.setString(3, employee.getSurname());
 			preparedStatement.setString(4, employee.getGender());
 			preparedStatement.setString(5, employee.getCity());
+			preparedStatement.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
